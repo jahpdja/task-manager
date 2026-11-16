@@ -13,6 +13,7 @@ const dataSource = new DataSource({
   ssl: process.env.DATABASE_SSL === 'true' ? { rejectUnauthorized: false } : false,
   entities: [Task],
   migrations: ['dist/database/migrations/*.js', 'src/database/migrations/*.ts'],
+  migrationsTableName: 'typeorm_migrations',
   synchronize: false,
 });
 export default dataSource;
