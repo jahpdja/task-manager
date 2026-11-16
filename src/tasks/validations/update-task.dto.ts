@@ -1,4 +1,4 @@
-import { IsDateString, IsEmail, IsEnum, IsOptional, IsString, MaxLength, IsNotEmpty } from 'class-validator';
+import { IsDateString, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 import { TaskStatus } from '../models/task-status.enum';
 
 export class UpdateTaskDto {
@@ -18,7 +18,8 @@ export class UpdateTaskDto {
   status?: TaskStatus;
 
   @IsOptional()
-  @IsEmail()
+  @IsString()
+  @IsNotEmpty()
   @MaxLength(254)
   responsible?: string;
 

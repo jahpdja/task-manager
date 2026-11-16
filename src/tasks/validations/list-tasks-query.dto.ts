@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
+import { IsEnum, IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 import { TaskStatus } from '../models/task-status.enum';
 
@@ -8,7 +8,7 @@ export class ListTasksQueryDto {
   status?: TaskStatus;
 
   @IsOptional()
-  @IsEmail()
+  @IsString()
   responsible?: string;
 
   @IsOptional()
