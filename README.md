@@ -18,7 +18,7 @@ npm run migration:run
 npm run start:dev
 ```
 
-The API is available at `http://localhost:3000/api/v1`. For production, run `npm run build` and `npm run start:prod`. Schema synchronization is disabled; database changes must use reviewed migrations.
+The API is available at `http://localhost:3000/api/v1`. For production, run `npm run build` and `npm run start:prod`. Interactive OpenAPI documentation is available at `http://localhost:3000/api/docs` and the JSON document at `/api/docs/openapi.json`. Schema synchronization is disabled; database changes must use reviewed migrations.
 
 ## Environment
 
@@ -81,13 +81,17 @@ Run `npm run migration:run` and roll back with `npm run migration:revert`. Gener
 
 The repository interface allows business logic to be tested without a database. Responsible is a string rather than a foreign key because this scope does not define users, authentication, or assignment lifecycle.
 
+## API documentation
+
+Swagger is configured independently in `src/swagger/`; each functional controller and DTO contributes its own OpenAPI metadata. Module-specific guides live under `docs/modules/`. See [documentation index](docs/README.md).
+
 ## Tests
 
 Run `npm test`, `npm run test:cov`, or `npm run test:e2e`. Tests are isolated in a dedicated commit. Execute them locally before deployment.
 
 ## Technical decisions and next steps
 
-PostgreSQL provides relational persistence and native UUID/enum support. Explicit migrations make schema changes reviewable. Pagination is bounded to avoid unbounded result sets. With more time, add authentication/authorization, user-backed assignees, audit history, soft deletion, optimistic concurrency, Swagger/OpenAPI, structured logging, rate limiting, and CI against PostgreSQL.
+PostgreSQL provides relational persistence and native UUID/enum support. Explicit migrations make schema changes reviewable. Pagination is bounded to avoid unbounded result sets. With more time, add authentication/authorization, user-backed assignees, audit history, soft deletion, optimistic concurrency, structured logging, rate limiting, and CI against PostgreSQL.
 
 ## AI usage
 
