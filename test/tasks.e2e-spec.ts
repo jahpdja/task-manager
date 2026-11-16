@@ -28,14 +28,14 @@ describe('Tasks HTTP API (e2e)', () => {
 
   it('creates a task and returns 201', async () => {
     await request(app.getHttpServer()).post('/api/v1/tasks')
-      .send({ title: 'New task', responsible: 'owner@example.com', dueDate: '2026-12-01' })
+      .send({ title: 'New task', responsible: 'Alex', dueDate: '2026-12-01' })
       .expect(201);
     expect(service.create).toHaveBeenCalled();
   });
 
   it('rejects invalid payloads with 400', async () => {
     await request(app.getHttpServer()).post('/api/v1/tasks')
-      .send({ title: '', responsible: 'invalid', dueDate: 'not-a-date', extra: true })
+      .send({ title: '', responsible: 'Alex', dueDate: 'not-a-date', extra: true })
       .expect(400);
   });
 

@@ -5,17 +5,17 @@ import { UpdateTaskDto } from './update-task.dto';
 import { TaskStatus } from '../models/task-status.enum';
 
 describe('Task DTO validation', () => {
-  it('accepts a valid task payload', async () => {
+  it('accepts a valid task payload with a plain-text responsible value', async () => {
     const dto = plainToInstance(CreateTaskDto, {
-      title: 'Ship API', responsible: 'owner@example.com', dueDate: '2026-12-01',
+      title: 'Ship API', responsible: 'Alex', dueDate: '2026-12-01',
       status: TaskStatus.PENDING,
     });
     expect(await validate(dto)).toHaveLength(0);
   });
 
-  it('rejects invalid email, date and status values', async () => {
+  it('rejects invalid title, date and status values', async () => {
     const dto = plainToInstance(CreateTaskDto, {
-      title: '', responsible: 'not-an-email', dueDate: 'tomorrow', status: 'blocked',
+      title: '', responsible: 'Alex', dueDate: 'tomorrow', status: 'blocked',
     });
     expect((await validate(dto)).length).toBeGreaterThan(0);
   });
