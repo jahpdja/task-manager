@@ -6,7 +6,7 @@ export class CreateTasks1730000000000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`CREATE TYPE "tasks_status_enum" AS ENUM ('pending', 'in_progress', 'done')`);
     await queryRunner.query(`CREATE TABLE "tasks" (
-      "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
+      "id" uuid NOT NULL DEFAULT gen_random_uuid(),
       "title" character varying(160) NOT NULL,
       "description" text,
       "status" "tasks_status_enum" NOT NULL DEFAULT 'pending',
