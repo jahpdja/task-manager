@@ -1,6 +1,6 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
+import request from 'supertest';
 import { TasksController } from '../src/tasks/controllers/tasks.controller';
 import { TasksService } from '../src/tasks/services/tasks.service';
 
