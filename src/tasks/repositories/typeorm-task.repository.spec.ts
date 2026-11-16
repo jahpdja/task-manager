@@ -1,5 +1,6 @@
 import { Repository } from 'typeorm';
 import { Task } from '../models/task.entity';
+import { TaskStatus } from '../models/task-status.enum';
 import { TypeOrmTaskRepository } from './typeorm-task.repository';
 
 describe('TypeOrmTaskRepository', () => {
@@ -29,7 +30,7 @@ describe('TypeOrmTaskRepository', () => {
     };
     const orm = { createQueryBuilder: jest.fn().mockReturnValue(qb) } as unknown as Repository<Task>;
     const repository = new TypeOrmTaskRepository(orm);
-    const result = await repository.findMany({ status: 'done' as any, responsible: 'Alex', page: 2, limit: 10 });
+    const result = await repository.findMany({ status: TaskStatus.DONE, responsible: 'Alex', page: 2, limit: 10 });
     expect(qb.andWhere).toHaveBeenCalledTimes(2);
     expect(qb.skip).toHaveBeenCalledWith(10);
     expect(qb.take).toHaveBeenCalledWith(10);
