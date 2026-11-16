@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { Task } from '../models/task.entity';
 import { TaskStatus } from '../models/task-status.enum';
-import { TASK_REPOSITORY, TaskRepository } from '../repositories/task.repository';
+import { TaskRepository } from '../repositories/task.repository';
 import { TasksService } from './tasks.service';
 
 describe('TasksService', () => {
